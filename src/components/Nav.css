@@ -37,5 +37,4 @@ ul {
 .panel-bg {
   display: flex;
   flex-direction: column;
-  background: green;
 }
