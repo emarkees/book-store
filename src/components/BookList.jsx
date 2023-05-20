@@ -3,7 +3,7 @@ import BookItem from './BookItem';
 
 const BookList = ({ booksProps, removeBook, setUpdate }) => {
   if (!Array.isArray(booksProps)) {
-    return null; 
+    return null;
   }
   return (
     <>
