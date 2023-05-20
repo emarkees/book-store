@@ -3,7 +3,7 @@ import BookItem from './BookItem';
 
 const BookList = ({ booksProps, removeBook, setUpdate }) => {
   if (!Array.isArray(booksProps)) {
-    return null; // or any appropriate fallback component or message
+    return null; 
   }
   return (
     <>
@@ -14,13 +14,17 @@ const BookList = ({ booksProps, removeBook, setUpdate }) => {
           removeBook={removeBook}
           setUpdate={setUpdate}
         />
-      )) }
+      ))}
     </>
   );
 };
 
 BookList.propTypes = {
-  booksProps: PropTypes.func.isRequired,
+  booksProps: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   removeBook: PropTypes.func.isRequired,
   setUpdate: PropTypes.func.isRequired,
 };

@@ -1,13 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import '../index.css';
 import { PropTypes } from 'prop-types';
 import ApexChart from './Chart';
 
 const BookItem = ({
-  bookProp, /* removeBook */ setUpdate, category,
+  bookProp, category,
 }) => {
   const [chart, setChart] = useState(0);
-  const editInputRef = useRef(null);
 
   const [edit, setEdit] = useState(false);
   const viewMode = {};
@@ -22,14 +21,7 @@ const BookItem = ({
     setEdit(true);
   };
 
-  const handleUpdateDone = (e) => {
-    if (e.key === 'Enter') {
-      setUpdate(editInputRef.current.value, bookProp.id, category.id);
-    }
-  };
-
   const handleUpdateProgress = () => {
-    // Assuming the number of chapters is stored in bookProp.chapterCount
     setChart(chart + bookProp.chapterCount);
   };
 
@@ -46,14 +38,6 @@ const BookItem = ({
           |
           <button type="button" onClick={handleEdit}> Edit </button>
         </div>
-
-        <input
-          type="text"
-          onKeyDown={handleUpdateDone}
-          ref={editInputRef}
-          defaultValue={bookProp.title}
-          style={editMode}
-        />
       </div>
 
       <div className="chart">
@@ -68,10 +52,7 @@ const BookItem = ({
 };
 
 BookItem.propTypes = {
-/*  addBookItem: PropTypes.func.isRequired, */
   bookProp: PropTypes.func.isRequired,
-  /*  removeBook: PropTypes.func.isRequired, */
-  setUpdate: PropTypes.func.isRequired,
   category: PropTypes.func.isRequired,
 };
 
