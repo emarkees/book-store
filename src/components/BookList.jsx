@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import BookItem from './BookItem';
 
-const BookList = ({ booksProps, removeBook, setUpdate }) => {
+const BookList = ({ booksProps = [], removeBook, setUpdate }) => {
   if (!Array.isArray(booksProps)) {
     return null;
   }
@@ -20,13 +20,9 @@ const BookList = ({ booksProps, removeBook, setUpdate }) => {
 };
 
 BookList.propTypes = {
-  booksProps: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
   removeBook: PropTypes.func.isRequired,
   setUpdate: PropTypes.func.isRequired,
+  booksProps: PropTypes.func.isRequired,
 };
 
 export default BookList;

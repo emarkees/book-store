@@ -5,18 +5,23 @@ import Categories from '../Pages/Categories';
 const FormInput = ({ addBookItem }) => {
   const [book, setBook] = useState('');
   const [category, setCategory] = useState('');
+  const [author, setAuthor] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (book.trim()) {
-      addBookItem(book, category); // Pass the book and category values
+      addBookItem(book, category, author); // Pass the book, category, and author values
       setBook('');
-      setCategory('');
+      setAuthor('');
     }
   };
 
-  const handleChange = (e) => {
+  const handleBookChange = (e) => {
     setBook(e.target.value);
+  };
+
+  const handleAuthorChange = (e) => {
+    setAuthor(e.target.value);
   };
 
   const handleCategoryChange = (selectedCategory) => {
@@ -28,20 +33,24 @@ const FormInput = ({ addBookItem }) => {
       <form onSubmit={handleSubmit} className="form-container">
         <input
           type="text"
-          placeholder="Add a book"
+          placeholder="Title"
           value={book}
-          onChange={handleChange}
+          onChange={handleBookChange}
+        />
+        <input
+          type="text"
+          placeholder="Author"
+          value={author}
+          onChange={handleAuthorChange}
         />
         <button type="button" className="input-submit">Add</button>
       </form>
       <p>
-        Current books:
+        Current book:
         {book}
       </p>
-      {' '}
       {/* Display the book state value */}
       <Categories handleCategoryChange={handleCategoryChange} />
-      {' '}
       {/* Pass the handleCategoryChange function */}
     </>
   );

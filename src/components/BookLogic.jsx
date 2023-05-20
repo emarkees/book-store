@@ -17,12 +17,7 @@ const BookLogic = () => {
 
   const setUpdate = (updatedBook, id) => {
     setBooks(
-      books.map((book) => {
-        if (book.id === id) {
-          return { ...book, title: updatedBook };
-        }
-        return book;
-      }),
+      books.map((book) => (book.id === id ? { ...book, title: updatedBook } : book)),
     );
   };
 
@@ -32,15 +27,8 @@ const BookLogic = () => {
 
   return (
     <div>
-      <BookList
-        booksProps={books}
-        setUpdate={setUpdate}
-        category={category} // Pass the category state to BookList
-      />
-      <FormInput
-        addBookItem={addBookItem}
-        handleCategoryChange={handleCategoryChange}
-      />
+      <BookList booksProps={books} setUpdate={setUpdate} category={category} />
+      <FormInput addBookItem={addBookItem} handleCategoryChange={handleCategoryChange} />
     </div>
   );
 };
