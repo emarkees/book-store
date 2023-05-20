@@ -6,11 +6,11 @@ const Categories = ({ handleCategoryChange }) => {
   const options = [
     {
       value: 'Action',
-      label: 'Action',
+      label: 'Author',
     },
     {
       value: 'Friction',
-      label: 'Friction',
+      label: 'Benny',
     },
     {
       value: 'Romance',
@@ -27,7 +27,7 @@ const Categories = ({ handleCategoryChange }) => {
       <Dropdown
         options={options}
         onChange={handleChange}
-        placeholder="Category"
+        placeholder="Author"
       />
     </>
   );
