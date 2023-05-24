@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dropdown from 'react-dropdown';
+import Select from 'react-dropdown-select';
 
 const Categories = ({ handleCategoryChange }) => {
   const options = [
     {
       value: 'Action',
-      label: 'Author',
+      label: 'Action',
     },
     {
       value: 'Friction',
-      label: 'Benny',
+      label: 'Friction',
     },
     {
       value: 'Romance',
@@ -18,18 +18,22 @@ const Categories = ({ handleCategoryChange }) => {
     },
   ];
 
-  const handleChange = (selectedOption) => {
-    handleCategoryChange(selectedOption.value);
+  const handleChange = (selectedOptions) => {
+    if (selectedOptions.length > 0) {
+      handleCategoryChange(selectedOptions[0].value);
+    } else {
+      handleCategoryChange('');
+    }
   };
 
   return (
-    <>
-      <Dropdown
-        options={options}
-        onChange={handleChange}
-        placeholder="Author"
-      />
-    </>
+    <Select
+      options={options}
+      onChange={handleChange}
+      placeholder="Category"
+      dropdownHandle={false} // Hide the default dropdown handle
+      dropdownGap={0} // Remove the gap between the input and dropdown
+    />
   );
 };
 

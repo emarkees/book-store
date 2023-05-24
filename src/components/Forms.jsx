@@ -1,63 +1,83 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Categories from '../Pages/Categories';
 
-const FormInput = ({ addBookItem }) => {
+const FormInput = ({ addBookItems }) => {
   const [book, setBook] = useState('');
   const [category, setCategory] = useState('');
   const [author, setAuthor] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (book.trim()) {
-      addBookItem(book, category, author); // Pass the book, category, and author values
+    if (book.trim() && author.trim() && category) {
+      addBookItems(book, author, category);
       setBook('');
       setAuthor('');
+      setCategory('');
+      setMessage('');
+    } else {
+      setMessage('please add Item');
     }
   };
 
-  const handleBookChange = (e) => {
+  const handleBook = (e) => {
     setBook(e.target.value);
   };
 
-  const handleAuthorChange = (e) => {
+  const handleAuthor = (e) => {
     setAuthor(e.target.value);
   };
 
-  const handleCategoryChange = (selectedCategory) => {
-    setCategory(selectedCategory);
+  const handleCategory = (e) => {
+    setCategory(e.target.value);
   };
+
+  const categories = [
+    'Action',
+    'Friction',
+    'Romance',
+    // Add more categories as needed
+  ];
 
   return (
     <>
       <form onSubmit={handleSubmit} className="form-container">
+        <span className="error-message">{message}</span>
         <input
           type="text"
-          placeholder="Title"
           value={book}
-          onChange={handleBookChange}
+          onChange={handleBook}
+          placeholder="Book Title"
         />
         <input
           type="text"
-          placeholder="Author"
           value={author}
-          onChange={handleAuthorChange}
+          onChange={handleAuthor}
+          placeholder="Book Author"
         />
-        <button type="button" className="input-submit">Add</button>
+        <select
+          name="select"
+          id="category"
+          value={category}
+          onChange={handleCategory}
+        >
+          <option value="">Category</option>
+          {categories.map((categoryOption) => (
+            <option key={categoryOption} value={categoryOption}>
+              {categoryOption}
+            </option>
+          ))}
+        </select>
+        <button type="submit" className="input-submit">
+          Add
+        </button>
       </form>
-      <p>
-        Current book:
-        {book}
-      </p>
-      {/* Display the book state value */}
-      <Categories handleCategoryChange={handleCategoryChange} />
-      {/* Pass the handleCategoryChange function */}
     </>
   );
 };
 
 FormInput.propTypes = {
-  addBookItem: PropTypes.func.isRequired,
+  addBookItems: PropTypes.func.isRequired,
 };
 
 export default FormInput;

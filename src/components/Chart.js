@@ -1,43 +1,36 @@
-import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import PropTypes from 'prop-types';
 
-class ApexChart extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      series: [70],
-      options: {
-        chart: {
-          height: 3,
-          type: 'radialBar',
+const ApexChart = ({ series }) => {
+  const options = {
+    chart: {
+      height: 350,
+      type: 'radialBar',
+    },
+    plotOptions: {
+      radialBar: {
+        hollow: {
+          size: '50%',
         },
-        plotOptions: {
-          radialBar: {
-            hollow: {
-              size: '50%',
-            },
-          },
-        },
-        labels: ['gg'],
       },
-    };
-  }
+    },
+    labels: ['gg'],
+  };
 
-  render() {
-    const { options, series } = this.state;
+  return (
+    <div id="chart">
+      <ReactApexChart
+        options={options}
+        series={[series]}
+        type="radialBar"
+        height={150}
+      />
+    </div>
+  );
+};
 
-    return (
-      <div id="chart">
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="radialBar"
-          height={150}
-        />
-      </div>
-    );
-  }
-}
+ApexChart.propTypes = {
+  series: PropTypes.number.isRequired,
+};
 
 export default ApexChart;

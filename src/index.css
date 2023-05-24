@@ -61,6 +61,8 @@ code {
 .container {
   display: flex;
   flex-direction: column;
+  width: auto;
+  height: auto;
   align-items: center;
 }
 
@@ -69,4 +71,13 @@ code {
   flex-direction: row;
   gap: 0.5rem;
   align-items: center;
+}
+
+card {
+  display: flex;
+  width: auto;
+}
+
+.category-header {
+  width: auto;
 }
