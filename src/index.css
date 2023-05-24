@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Courier New',
+    monospace;
+}
+
+:root {
+  --primary: #fff;
+  --azure: #668de0;
+}
+
+.fff {
+  display: flex;
+  height: 4rem;
+  width: 5rem;
+}
+
+.bokey {
+  display: flex;
+  height: 2.5rem;
+  width: auto;
+}
+
+.bag {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 10rem;
+  padding: 0;
+  align-items: center;
+  gap: 1rem;
+}
+
+#chart {
+  display: flex;
+  height: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  align-items: center;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+card {
+  display: flex;
+  width: auto;
+}
+
+.category-header {
+  width: auto;
+}
