@@ -1,49 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FormInput from './Forms';
 import BookList from './BookList';
+import { addBook } from '../redux/books/booksSlice';
 
 const BookLogic = () => {
-  const [books, setBooks] = useState([]);
-  const [category, setCategory] = useState('');
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.books);
 
   const addBookItem = (title, author, category) => {
     const newBook = {
-      id: books.length + 1,
+      item_id: books.length + 1,
       title,
       author,
       category,
     };
-    setBooks([...books, newBook]);
-  };
-
-  const removeBook = (id) => {
-    // Placeholder implementation - remove the book with the given id from the list
-    const updatedBooks = books.filter((book) => book.id !== id);
-    setBooks(updatedBooks);
-  };
-
-  const setUpdate = (updatedBook, id) => {
-    setBooks(
-      books.map((book) => (book.id === id ? { ...book, title: updatedBook } : book)),
-    );
-  };
-
-  const handleCategoryChange = (selectedCategory) => {
-    setCategory(selectedCategory);
+    dispatch(addBook(newBook)); // Dispatch the addBook action with the new book
   };
 
   return (
     <div>
-      <BookList
-        booksProps={books}
-        removeBook={removeBook}
-        category={category}
-        setUpdate={setUpdate}
-      />
-      <FormInput
-        addBookItems={addBookItem}
-        handleCategoryChange={handleCategoryChange}
-      />
+      <BookList />
+      <FormInput addBookItem={addBookItem} />
     </div>
   );
 };

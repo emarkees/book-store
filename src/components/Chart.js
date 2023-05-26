@@ -14,17 +14,21 @@ const ApexChart = ({ series }) => {
         },
       },
     },
-    labels: ['gg'],
+    labels: [''],
   };
 
   return (
-    <div id="chart">
+    <div>
       <ReactApexChart
         options={options}
         series={[series]}
         type="radialBar"
         height={150}
       />
+      <p>
+        {series}
+        %
+      </p>
     </div>
   );
 };

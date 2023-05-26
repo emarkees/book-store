@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const FormInput = ({ addBookItems }) => {
+const FormInput = ({ addBookItem }) => {
   const [book, setBook] = useState('');
   const [category, setCategory] = useState('');
   const [author, setAuthor] = useState('');
@@ -10,13 +10,13 @@ const FormInput = ({ addBookItems }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (book.trim() && author.trim() && category) {
-      addBookItems(book, author, category);
+      addBookItem(book, author, category);
       setBook('');
       setAuthor('');
       setCategory('');
       setMessage('');
     } else {
-      setMessage('please add Item');
+      setMessage('Please add all required information');
     }
   };
 
@@ -34,7 +34,8 @@ const FormInput = ({ addBookItems }) => {
 
   const categories = [
     'Action',
-    'Friction',
+    'Fiction',
+    'Non Friction',
     'Romance',
     // Add more categories as needed
   ];
@@ -77,7 +78,7 @@ const FormInput = ({ addBookItems }) => {
 };
 
 FormInput.propTypes = {
-  addBookItems: PropTypes.func.isRequired,
+  addBookItem: PropTypes.func.isRequired,
 };
 
 export default FormInput;
