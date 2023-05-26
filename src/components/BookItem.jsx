@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import '../index.css';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import ApexChart from './Chart';
+import { removeBook } from '../redux/books/booksSlice';
 
 const BookItem = ({ bookProp }) => {
   const [chart, setChart] = useState(0);
   const [edit, setEdit] = useState(false);
-  const [series, setSeries] = useState(0);
+  const [series, setSeries] = useState(5);
+  const dispatch = useDispatch();
 
   const viewMode = {};
   const editMode = {};
@@ -20,6 +23,10 @@ const BookItem = ({ bookProp }) => {
 
   const handleEdit = () => {
     setEdit(true);
+  };
+
+  const handleRemove = () => {
+    dispatch(removeBook(bookProp.item_id));
   };
 
   const handleUpdateProgress = () => {
@@ -38,6 +45,7 @@ const BookItem = ({ bookProp }) => {
       return updatedSeries;
     });
   };
+
   return (
     <Card className="bag">
       <div className="container">
@@ -48,14 +56,15 @@ const BookItem = ({ bookProp }) => {
           <button type="button">Comment</button>
           {' '}
           |
-          <button type="button">Remove</button>
+          <button type="button" onClick={handleRemove}>Remove</button>
           |
-          <button type="button" onClick={handleEdit}> Edit </button>
+          <button type="button" onClick={handleEdit}>Edit</button>
         </div>
       </div>
 
       <div className="chart">
         <ApexChart series={series} />
+        {/* Additional JSX elements here if needed */}
       </div>
       <div className="chapter">
         <h2>CHAPTER</h2>
@@ -67,6 +76,7 @@ const BookItem = ({ bookProp }) => {
 
 BookItem.propTypes = {
   bookProp: PropTypes.shape({
+    item_id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,

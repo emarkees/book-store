@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FormInput from './Forms';
 import BookList from './BookList';
+import { addBook } from '../redux/books/booksSlice';
 
 const BookLogic = () => {
-  const [books, setBooks] = useState([]);
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.books);
 
   const addBookItem = (title, author, category) => {
     const newBook = {
@@ -12,16 +15,13 @@ const BookLogic = () => {
       author,
       category,
     };
-    setBooks([...books, newBook]);
+    dispatch(addBook(newBook)); // Dispatch the addBook action with the new book
   };
 
   return (
     <div>
-      <BookList books={books} />
-      {/* Pass the 'books' array as a prop to BookList */}
-      <FormInput
-        addBookItems={addBookItem}
-      />
+      <BookList />
+      <FormInput addBookItem={addBookItem} />
     </div>
   );
 };

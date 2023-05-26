@@ -75,7 +75,8 @@ code {
 
 card {
   display: flex;
-  width: auto;
+  width: 10rem;
+  height: 1rem;
 }
 
 .category-header {
