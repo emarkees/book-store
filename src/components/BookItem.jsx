@@ -48,11 +48,11 @@ const BookItem = ({ bookProp }) => {
 
   return (
     <Card className="bag">
-      <div className="container">
-        <h5 className="category-header">{bookProp.category}</h5>
-        <h1>{bookProp.title}</h1>
+      <div className="continer">
+        <h5 className="categry-header">{bookProp.category}</h5>
+        <h5>{bookProp.title}</h5>
         <h5>{bookProp.author}</h5>
-        <div className="title-container">
+        <div className="title-cntainer">
           <button type="button">Comment</button>
           {' '}
           |
