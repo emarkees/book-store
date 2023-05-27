@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../index.css';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import Card from '@mui/material/Card';
 import ApexChart from './Chart';
 import { fetchBooks, removeBook } from '../redux/books/booksSlice';
 
@@ -28,7 +27,7 @@ const BookItem = ({ bookProp }) => {
 
   const handleRemove = () => {
     setLoading(true);
-    dispatch(removeBook(bookProp.item_id))
+    dispatch(removeBook(bookProp.item_id)) // Use `bookProp.item_id` instead of `bookProp.book.item_id`
       .then(() => {
         dispatch(fetchBooks());
         setLoading(false);
@@ -61,10 +60,10 @@ const BookItem = ({ bookProp }) => {
   }
 
   return (
-    <Card className="bag">
+    <section className="card">
       <div className="container">
         <h5 className="category-header">{bookProp.book.category}</h5>
-        <h5>{bookProp.book.title}</h5>
+        <h5 className="Title">{bookProp.book.title}</h5>
         <h5>{bookProp.book.author}</h5>
         <div className="title-container">
           <button type="button">Comment</button>
@@ -85,7 +84,7 @@ const BookItem = ({ bookProp }) => {
         <h2>CHAPTER</h2>
         <button type="button" onClick={handleUpdateProgress}>UPDATE PROGRESS</button>
       </div>
-    </Card>
+    </section>
   );
 };
 
@@ -93,6 +92,7 @@ BookItem.propTypes = {
   bookProp: PropTypes.shape({
     item_id: PropTypes.string.isRequired,
     book: PropTypes.shape({
+      item_id: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/XKLrcF8yEfNG679PvMbv/books';
+const API = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/b1VnLXplMBrgrbcSaOSR/books';
 
 const initialState = {
   books: [],
@@ -12,7 +12,10 @@ const initialState = {
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   try {
     const response = await axios(API);
-    const booksWithId = Object.entries(response.data).map(([id, book]) => ({ id, book: book[0] }));
+    const booksWithId = Object.entries(response.data).map(([id, book]) => ({
+      item_id: id,
+      book: book[0],
+    }));
     return booksWithId;
   } catch (error) {
     throw new Error(error.message);
@@ -29,9 +32,11 @@ export const addBook = createAsyncThunk('books/addBook', async (newBook, thunkAP
   }
 });
 
-export const removeBook = createAsyncThunk('books/deleteBook', async (bookId) => {
+// eslint-disable-next-line camelcase
+export const removeBook = createAsyncThunk('books/deleteBook', async (item_id) => {
   try {
-    const response = await axios.delete(`${API}/${bookId}`);
+    // eslint-disable-next-line camelcase
+    const response = await axios.delete(`${API}/${item_id}`);
     return response.data;
   } catch (error) {
     throw new Error(error.message);
