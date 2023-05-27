@@ -14,16 +14,16 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
     const response = await axios(API);
     const booksWithId = Object.entries(response.data).map(([id, book]) => ({ id, book: book[0] }));
     return booksWithId;
-    console.log(booksWithId);
   } catch (error) {
     throw new Error(error.message);
   }
 });
 
-export const addBook = createAsyncThunk('books/addBook', async (newBook) => {
+export const addBook = createAsyncThunk('books/addBook', async (newBook, thunkAPI) => {
   try {
-    const response = await axios.post(API, newBook);
-    return response.data;
+    await axios.post(API, newBook);
+    const response = await thunkAPI.dispatch(fetchBooks());
+    return response;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -42,12 +42,12 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    addBook: (state, action) => {
-      state.books.push(action.payload);
-    },
-    removeBook: (state, action) => {
-      state.books = state.books.filter((book) => book.item_id !== action.payload);
-    },
+    // addBook: (state, action) => {
+    //   state.books.push(action.payload);
+    // },
+    // removeBook: (state, action) => {
+    //   state.books = state.books.filter((book) => book.item_id !== action.payload);
+    // },
   },
   extraReducers(builder) {
     builder
@@ -56,13 +56,14 @@ const booksSlice = createSlice({
       })
       .addCase(fetchBooks.fulfilled, (state, action) => {
         state.status = 'success';
+        console.log(action.payload);
         state.books = action.payload;
       })
       .addCase(fetchBooks.rejected, (state) => {
         state.status = 'failed';
       })
-      .addCase(addBook.fulfilled, (state, action) => {
-        state.books.push(action.payload);
+      .addCase(addBook.fulfilled, (state) => {
+        state.status = 'success';
       })
       .addCase(removeBook.fulfilled, (state, action) => {
         state.books = state.books.filter((book) => book.item_id !== action.payload);

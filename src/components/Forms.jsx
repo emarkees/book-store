@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchBooks, addBook } from '../redux/books/booksSlice';
+import { addBook } from '../redux/books/booksSlice';
 import '../index.css';
+
+const generateRandomId = () => {
+  const alphanumericCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const idLength = 8;
+
+  let randomId = '';
+  for (let i = 0; i < idLength; i += 1) {
+    const randomIndex = Math.floor(Math.random() * alphanumericCharacters.length);
+    randomId += alphanumericCharacters[randomIndex];
+  }
+
+  return randomId;
+};
 
 const FormInput = () => {
   const [book, setBook] = useState('');
@@ -15,13 +28,15 @@ const FormInput = () => {
     e.preventDefault();
     if (book.trim() && author.trim() && category) {
       setLoading(true);
-      dispatch(addBook({ title: book, author, category }));
+      dispatch(addBook({
+        item_id: generateRandomId(), title: book, author, category,
+      }));
       setBook('');
       setAuthor('');
       setCategory('');
       setMessage('');
       setLoading(false);
-      dispatch(fetchBooks());
+      // dispatch(fetchBooks());
     } else {
       setMessage('Please add all required information');
     }

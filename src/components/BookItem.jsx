@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../index.css';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import ApexChart from './Chart';
@@ -25,10 +25,6 @@ const BookItem = ({ bookProp }) => {
   const handleEdit = () => {
     setEdit(true);
   };
-
-  useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch]);
 
   const handleRemove = () => {
     setLoading(true);
@@ -67,9 +63,9 @@ const BookItem = ({ bookProp }) => {
   return (
     <Card className="bag">
       <div className="container">
-        <h5 className="category-header">{bookProp.category}</h5>
-        <h5>{bookProp.title}</h5>
-        <h5>{bookProp.author}</h5>
+        <h5 className="category-header">{bookProp.book.category}</h5>
+        <h5>{bookProp.book.title}</h5>
+        <h5>{bookProp.book.author}</h5>
         <div className="title-container">
           <button type="button">Comment</button>
           {' '}
@@ -93,14 +89,14 @@ const BookItem = ({ bookProp }) => {
   );
 };
 
-/* // BookItem.propTypes = {
-  // bookProp: PropTypes.shape({
+BookItem.propTypes = {
+  bookProp: PropTypes.shape({
     item_id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     chapterCount: PropTypes.number.isRequired,
   }).isRequired,
-}; */
+};
 
 export default BookItem;

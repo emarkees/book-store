@@ -1,22 +1,22 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import FormInput from './Forms';
 import BookList from './BookList';
 import { addBook } from '../redux/books/booksSlice';
 
 const BookLogic = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
 
-  const addBookItem = (title, author, category) => {
+  // eslint-disable-next-line camelcase
+  const addBookItem = (item_id, title, author, category) => {
     const newBook = {
-      item_id: books.books.length + 1,
+      // eslint-disable-next-line camelcase
+      item_id,
       title,
       author,
       category,
     };
     dispatch(addBook(newBook)); // Dispatch the addBook action with the new book
-    console.log(newBook);
   };
 
   return (
