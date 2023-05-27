@@ -92,9 +92,11 @@ const BookItem = ({ bookProp }) => {
 BookItem.propTypes = {
   bookProp: PropTypes.shape({
     item_id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
+    book: PropTypes.shape({
+      category: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+    }).isRequired,
     chapterCount: PropTypes.number.isRequired,
   }).isRequired,
 };

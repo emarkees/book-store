@@ -11,7 +11,8 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchBooks());
-  }, []);
+  }, [dispatch]); // Include dispatch in the dependency array
+
   return (
     <BrowserRouter>
       <Nav />

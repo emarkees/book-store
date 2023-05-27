@@ -4,7 +4,6 @@ import BookItem from './BookItem';
 
 const BookList = () => {
   const books = useSelector((state) => state.books.books);
-  console.log(books);
   const status = useSelector((state) => state.books.status);
   const error = useSelector((state) => state.books.error);
   if (status === 'loading') {
