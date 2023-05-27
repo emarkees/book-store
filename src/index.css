@@ -31,6 +31,11 @@ code {
   --azure: #668de0;
 }
 
+.appBody {
+  width:auto;
+  height: 68.563rem;
+}
+
 .fff {
   display: flex;
   height: 4rem;
@@ -76,6 +81,10 @@ code {
   align-items: center;
 }
 
+.title {
+  padding: 0.6rem;
+}
+
 card {
   display: flex;
   width: 10rem;
@@ -84,4 +93,26 @@ card {
 
 .category-header {
   width: auto;
+}
+
+.input-submit {
+  width: 11.5rem;
+  height: 2.813rem;
+  margin: 1.188rem 0 0 2.125rem;
+  padding: 0.801rem 1.188rem 0.886rem 1.375rem;
+  border-radius: 3px;
+  background-color: var(--azure);
+}
+
+.wrapper {
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.error-message {
+  display: flex;
+  color: red;
 }

@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../index.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import ApexChart from './Chart';
-import { removeBook } from '../redux/books/booksSlice';
+import { fetchBooks, removeBook } from '../redux/books/booksSlice';
 
 const BookItem = ({ bookProp }) => {
   const [chart, setChart] = useState(0);
   const [edit, setEdit] = useState(false);
-  const [series, setSeries] = useState(5);
+  const [series, setSeries] = useState([5]);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const viewMode = {};
@@ -25,8 +26,21 @@ const BookItem = ({ bookProp }) => {
     setEdit(true);
   };
 
+  useEffect(() => {
+    dispatch(fetchBooks());
+  }, [dispatch]);
+
   const handleRemove = () => {
-    dispatch(removeBook(bookProp.item_id));
+    setLoading(true);
+    dispatch(removeBook(bookProp.item_id))
+      .then(() => {
+        dispatch(fetchBooks());
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+        // Handle error if needed
+      });
   };
 
   const handleUpdateProgress = () => {
@@ -46,13 +60,17 @@ const BookItem = ({ bookProp }) => {
     });
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Card className="bag">
-      <div className="continer">
-        <h5 className="categry-header">{bookProp.category}</h5>
+      <div className="container">
+        <h5 className="category-header">{bookProp.category}</h5>
         <h5>{bookProp.title}</h5>
         <h5>{bookProp.author}</h5>
-        <div className="title-cntainer">
+        <div className="title-container">
           <button type="button">Comment</button>
           {' '}
           |
@@ -66,6 +84,7 @@ const BookItem = ({ bookProp }) => {
         <ApexChart series={series} />
         {/* Additional JSX elements here if needed */}
       </div>
+
       <div className="chapter">
         <h2>CHAPTER</h2>
         <button type="button" onClick={handleUpdateProgress}>UPDATE PROGRESS</button>
@@ -74,14 +93,14 @@ const BookItem = ({ bookProp }) => {
   );
 };
 
-BookItem.propTypes = {
-  bookProp: PropTypes.shape({
-    item_id: PropTypes.number.isRequired,
+/* // BookItem.propTypes = {
+  // bookProp: PropTypes.shape({
+    item_id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     chapterCount: PropTypes.number.isRequired,
   }).isRequired,
-};
+}; */
 
 export default BookItem;

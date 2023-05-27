@@ -10,12 +10,13 @@ const BookLogic = () => {
 
   const addBookItem = (title, author, category) => {
     const newBook = {
-      item_id: books.length + 1,
+      item_id: books.books.length + 1,
       title,
       author,
       category,
     };
     dispatch(addBook(newBook)); // Dispatch the addBook action with the new book
+    console.log(newBook);
   };
 
   return (

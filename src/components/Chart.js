@@ -1,5 +1,5 @@
 import ReactApexChart from 'react-apexcharts';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const ApexChart = ({ series }) => {
   const options = {
@@ -33,8 +33,8 @@ const ApexChart = ({ series }) => {
   );
 };
 
-ApexChart.propTypes = {
+/* ApexChart.propTypes = {
   series: PropTypes.number.isRequired,
-};
+}; */
 
 export default ApexChart;

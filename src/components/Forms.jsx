@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { fetchBooks, addBook } from '../redux/books/booksSlice';
+import '../index.css';
 
-const FormInput = ({ addBookItem }) => {
+const FormInput = () => {
   const [book, setBook] = useState('');
   const [category, setCategory] = useState('');
   const [author, setAuthor] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (book.trim() && author.trim() && category) {
-      addBookItem(book, author, category);
+      setLoading(true);
+      dispatch(addBook({ title: book, author, category }));
       setBook('');
       setAuthor('');
       setCategory('');
       setMessage('');
+      setLoading(false);
+      dispatch(fetchBooks());
     } else {
       setMessage('Please add all required information');
     }
@@ -42,13 +49,15 @@ const FormInput = ({ addBookItem }) => {
 
   return (
     <>
+      {loading && <div>Loading...</div>}
+      <span className="error-message">{message}</span>
       <form onSubmit={handleSubmit} className="form-container">
-        <span className="error-message">{message}</span>
         <input
           type="text"
           value={book}
           onChange={handleBook}
           placeholder="Book Title"
+          className="title"
         />
         <input
           type="text"
@@ -75,10 +84,6 @@ const FormInput = ({ addBookItem }) => {
       </form>
     </>
   );
-};
-
-FormInput.propTypes = {
-  addBookItem: PropTypes.func.isRequired,
 };
 
 export default FormInput;
