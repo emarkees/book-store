@@ -64,7 +64,7 @@ const BookItem = ({ bookProp }) => {
       <div className="container">
         <h5 className="category-header">{bookProp.book.category}</h5>
         <h5 className="Title">{bookProp.book.title}</h5>
-        <h5>{bookProp.book.author}</h5>
+        <h5 className="Author">{bookProp.book.author}</h5>
         <div className="title-container">
           <button type="button">Comment</button>
           {' '}
@@ -82,7 +82,7 @@ const BookItem = ({ bookProp }) => {
 
       <div className="chapter">
         <h2>CHAPTER</h2>
-        <button type="button" onClick={handleUpdateProgress}>UPDATE PROGRESS</button>
+        <button type="button" className="progress" onClick={handleUpdateProgress}>UPDATE PROGRESS</button>
       </div>
     </section>
   );

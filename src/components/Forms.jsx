@@ -65,6 +65,7 @@ const FormInput = () => {
   return (
     <>
       {loading && <div>Loading...</div>}
+      <div className="head-title">ADD A NEW BOOK</div>
       <span className="error-message">{message}</span>
       <form onSubmit={handleSubmit} className="form-container">
         <input
@@ -72,13 +73,14 @@ const FormInput = () => {
           value={book}
           onChange={handleBook}
           placeholder="Book Title"
-          className="title"
+          className="title-input"
         />
         <input
           type="text"
           value={author}
           onChange={handleAuthor}
           placeholder="Book Author"
+          className="author-input"
         />
         <select
           name="select"
@@ -94,7 +96,7 @@ const FormInput = () => {
           ))}
         </select>
         <button type="submit" className="input-submit">
-          Add
+          Add Book
         </button>
       </form>
     </>

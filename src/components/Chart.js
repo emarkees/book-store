@@ -24,11 +24,8 @@ const ApexChart = ({ series }) => {
         series={[series]}
         type="radialBar"
         height={150}
+        className="charts"
       />
-      <p>
-        {series}
-        %
-      </p>
     </div>
   );
 };

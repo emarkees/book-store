@@ -29,6 +29,7 @@ code {
 :root {
   --primary: #fff;
   --azure: #668de0;
+  --white: #e8e8e8;
 }
 
 .appBody {
@@ -64,19 +65,56 @@ code {
   border-radius: 4px;
   border: solid 1px var(--white);
   align-items: center;
-  background: green;
+  background: var(--primary);
 }
 
 #chart {
   display: flex;
   height: auto;
   flex: 30%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CSS for ApexChart */
+.charts {
+  position: relative;
+}
+
+.charts::after {
+  content: attr(data-value);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .chapter {
   display: flex;
   flex-direction: column;
+  width: auto;
+  height: auto;
   flex: 30%;
+  align-items: center;
+}
+
+.progress {
+  display: flex;
+  width: fit-content;
+  height: 2.063rem;
+  margin: 0;
+  padding: 0;
+  background-color: var(--azure);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  color: #fff;
 }
 
 .container {
@@ -85,11 +123,11 @@ code {
   width: 50%;
   height: 100%;
   align-items: flex-start;
+  justify-content: center;
   padding: 0;
   margin: 0;
-  gap: 0;
+  gap: 0.5rem;
   flex: 45%;
-  background: #cfb1b1;
 }
 
 .title-container {
@@ -101,7 +139,7 @@ code {
 }
 
 .Title {
-  width: 12.313rem;
+  width: 100%;
   height: 1.813rem;
   margin: 0.188rem 20.188rem 0 0;
   font-family: RobotoSlab, sans-serif;
@@ -112,6 +150,20 @@ code {
   line-height: normal;
   letter-spacing: -0.2px;
   color: #121212;
+}
+
+.Author {
+  width: 5.813rem;
+  height: 1.188rem;
+  margin: 0.25rem 0.875rem 0 0;
+  font-family: RobotoSlab, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4386bf;
 }
 
 card {
@@ -135,15 +187,6 @@ card {
   color: #121212;
 }
 
-.input-submit {
-  width: 11.5rem;
-  height: 2.813rem;
-  margin: 1.188rem 0 0 2.125rem;
-  padding: 0.801rem 1.188rem 0.886rem 1.375rem;
-  border-radius: 3px;
-  background-color: var(--azure);
-}
-
 .wrapper {
   display: flex;
   width: auto;
@@ -162,11 +205,67 @@ card {
   position: fixed;
   width: auto;
   flex-direction: column;
-  background: #c01daa;
+  background-color: #fafafa;
 }
 
 .list-wrapper {
   width: auto;
   height: 20rem;
   overflow-y: scroll;
+}
+
+.head-title {
+  width: auto;
+  height: 1.5rem;
+  margin: 1.813rem 32.75rem 1.188rem 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.18px;
+  color: #888;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.title-input,
+.author-input {
+  width: 15rem;
+  height: 2rem;
+  margin: 1.1rem;
+  padding: 0.09rem;
+  border-radius: 1px;
+  border: solid 1px var(--white);
+  background-color: #fff;
+}
+
+#category {
+  width: 10rem;
+  height: 2rem;
+}
+
+.input-submit {
+  display: flex;
+  width: 10rem;
+  height: 2.063rem;
+  margin: 1rem;
+  padding: 0;
+  background-color: var(--azure);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  color: #fff;
 }
