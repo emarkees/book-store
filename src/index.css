@@ -28,7 +28,7 @@ code {
 
 :root {
   --primary: #fff;
-  --azure: #668de0;
+  --azure: #0290ff;
   --white: #e8e8e8;
 }
 
@@ -102,19 +102,24 @@ code {
 
 .progress {
   display: flex;
-  width: fit-content;
-  height: 2.063rem;
-  margin: 0;
-  padding: 0;
+  width: 11rem;
+  margin: 1rem;
+  padding: 0.5rem 0;
   background-color: var(--azure);
   text-align: center;
   align-items: center;
   justify-content: center;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: bold;
+  font-size: 0.9rem;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.5px;
   color: #fff;
+  border: none; /* Remove border */
+  border-radius: 0.4rem; /* Remove border-radius */
+  cursor: pointer;
 }
 
 .container {
@@ -255,17 +260,21 @@ card {
 
 .input-submit {
   display: flex;
-  width: 10rem;
-  height: 2.063rem;
   margin: 1rem;
-  padding: 0;
+  padding: 0.5rem 3rem;
   background-color: var(--azure);
   text-align: center;
   align-items: center;
   justify-content: center;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: bold;
+  font-size: 0.9rem;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: 0.5px;
   color: #fff;
+  border: none; /* Remove border */
+  border-radius: 0.4rem; /* Remove border-radius */
+  cursor: pointer;
 }

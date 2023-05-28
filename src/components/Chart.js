@@ -31,7 +31,7 @@ const ApexChart = ({ series }) => {
 };
 
 ApexChart.propTypes = {
-  series: PropTypes.number.isRequired,
+  series: PropTypes.string.isRequired,
 };
 
 export default ApexChart;
