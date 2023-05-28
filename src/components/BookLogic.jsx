@@ -1,16 +1,18 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import FormInput from './Forms';
 import BookList from './BookList';
 import { addBook } from '../redux/books/booksSlice';
+import '../index.css';
 
 const BookLogic = () => {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
 
-  const addBookItem = (title, author, category) => {
+  // eslint-disable-next-line camelcase
+  const addBookItem = (item_id, title, author, category) => {
     const newBook = {
-      item_id: books.length + 1,
+      // eslint-disable-next-line camelcase
+      item_id,
       title,
       author,
       category,
@@ -19,9 +21,13 @@ const BookLogic = () => {
   };
 
   return (
-    <div>
-      <BookList />
-      <FormInput addBookItem={addBookItem} />
+    <div className="Logic-wrapper">
+      <div className="list-wrapper">
+        <BookList />
+      </div>
+      <div className="logic">
+        <FormInput addBookItem={addBookItem} />
+      </div>
     </div>
   );
 };

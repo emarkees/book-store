@@ -1,5 +1,6 @@
 import React from 'react';
 import BookLogic from '../components/BookLogic';
+import '../index.css';
 
 const Home = () => (
   <>

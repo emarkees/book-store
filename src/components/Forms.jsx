@@ -1,20 +1,42 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../redux/books/booksSlice';
+import '../index.css';
 
-const FormInput = ({ addBookItem }) => {
+const generateRandomId = () => {
+  const alphanumericCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const idLength = 8;
+
+  let randomId = '';
+  for (let i = 0; i < idLength; i += 1) {
+    const randomIndex = Math.floor(Math.random() * alphanumericCharacters.length);
+    randomId += alphanumericCharacters[randomIndex];
+  }
+
+  return randomId;
+};
+
+const FormInput = () => {
   const [book, setBook] = useState('');
   const [category, setCategory] = useState('');
   const [author, setAuthor] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (book.trim() && author.trim() && category) {
-      addBookItem(book, author, category);
+      setLoading(true);
+      dispatch(addBook({
+        item_id: generateRandomId(), title: book, author, category,
+      }));
       setBook('');
       setAuthor('');
       setCategory('');
       setMessage('');
+      setLoading(false);
+      // dispatch(fetchBooks());
     } else {
       setMessage('Please add all required information');
     }
@@ -42,13 +64,15 @@ const FormInput = ({ addBookItem }) => {
 
   return (
     <>
+      {loading && <div>Loading...</div>}
+      <span className="error-message">{message}</span>
       <form onSubmit={handleSubmit} className="form-container">
-        <span className="error-message">{message}</span>
         <input
           type="text"
           value={book}
           onChange={handleBook}
           placeholder="Book Title"
+          className="title"
         />
         <input
           type="text"
@@ -75,10 +99,6 @@ const FormInput = ({ addBookItem }) => {
       </form>
     </>
   );
-};
-
-FormInput.propTypes = {
-  addBookItem: PropTypes.func.isRequired,
 };
 
 export default FormInput;
