@@ -81,7 +81,7 @@ const BookItem = ({ bookProp }) => {
       </div>
 
       <div className="chapter">
-        <span className="current-chapter">Current Chapter</span>
+        <span className="current-chapter">CURRENT CHAPTER</span>
         <button type="button" className="progress" onClick={handleUpdateProgress}>UPDATE PROGRESS</button>
       </div>
     </section>
