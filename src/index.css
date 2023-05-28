@@ -153,7 +153,7 @@ code {
 }
 
 .Author {
-  width: 5.813rem;
+  width: auto;
   height: 1.188rem;
   margin: 0.25rem 0.875rem 0 0;
   font-family: RobotoSlab, sans-serif;
