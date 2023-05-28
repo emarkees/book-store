@@ -16,6 +16,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+#root div {
+  margin: 0;
+}
+
 code {
   font-family:
     source-code-pro,
@@ -173,8 +182,9 @@ code {
 
 card {
   display: flex;
-  width: 10rem;
-  height: 1rem;
+  width: auto;
+  height: auto;
+  margin-top: 0;
 }
 
 .category-header {
@@ -209,14 +219,17 @@ card {
   display: flex;
   position: fixed;
   width: auto;
+  height: auto;
   flex-direction: column;
   background-color: #fafafa;
+  margin-top: 0;
 }
 
 .list-wrapper {
   width: auto;
   height: 20rem;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .head-title {
@@ -256,6 +269,21 @@ card {
 #category {
   width: 10rem;
   height: 2rem;
+}
+
+.Current-Chapter {
+  width: 7.875rem;
+  height: 1.125rem;
+  margin: 0.063rem 3.625rem 0 3.688rem;
+  opacity: 0.5;
+  font-family: RobotoSlab;
+  font-size: 0.813rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #121212;
 }
 
 .input-submit {
