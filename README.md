@@ -63,7 +63,7 @@ This project will lay the foundations for my Bookstore website. I will create th
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Not available yet](https://emarkees.github.io/Bookstore)
+- [available](https://my-bookstore-b3v1.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +128,7 @@ Use this command to open the web server:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/emarkees/book-store/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

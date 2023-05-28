@@ -24,17 +24,14 @@ const ApexChart = ({ series }) => {
         series={[series]}
         type="radialBar"
         height={150}
+        className="charts"
       />
-      <p>
-        {series}
-        %
-      </p>
     </div>
   );
 };
 
 ApexChart.propTypes = {
-  series: PropTypes.number.isRequired,
+  series: PropTypes.string.isRequired,
 };
 
 export default ApexChart;
